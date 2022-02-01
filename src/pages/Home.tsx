@@ -1,8 +1,10 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonItem, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
 
 const Home: React.FC = () => {
+  const [state] = useState(Array.from(Array(50).keys()))
   return (
     <IonPage>
       <IonHeader>
@@ -16,7 +18,9 @@ const Home: React.FC = () => {
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer />
+          <IonList>
+          {state.map(i => <IonItem key={i} routerLink={'/detail/' + i}>Item {i}</IonItem>)}
+        </IonList>
       </IonContent>
     </IonPage>
   );
